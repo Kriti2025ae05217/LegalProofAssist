@@ -1,0 +1,19 @@
+LEGAL_TERMS = {
+    "whereas",
+    "herein",
+    "thereof",
+    "therein",
+    "hereto",
+    "thereafter",
+    "indemnify",
+    "indemnification",
+    "force",
+    "majeure",
+    "assignor",
+    "assignee",
+    "breach",
+    "jurisdiction",
+    "covenant",
+    "witnesseth",
+    "notwithstanding"
+}
