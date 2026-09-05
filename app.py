@@ -1,33 +1,38 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask
+from flask import render_template
+from flask import request
+from flask import jsonify
+
 from backend.spell_checker import check_spelling
 from backend.grammar_checker import check_grammar
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-@app.route('/check', methods=['POST'])
+@app.route("/check", methods=["POST"])
 def check():
 
     data = request.get_json()
 
-    clause_id = data.get('clause_id', '')
-    text = data.get('text', '')
+    clause_id = data["clause_id"]
+    text = data["text"]
 
-    spelling_errors = check_spelling(text)
+    spell_errors = check_spelling(text)
+
     grammar_errors = check_grammar(text)
 
-    all_errors = spelling_errors + grammar_errors
+    results = spell_errors + grammar_errors
 
     return jsonify({
         "clause_id": clause_id,
-        "issues": all_errors
+        "results": results
     })
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
